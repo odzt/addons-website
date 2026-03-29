@@ -3,81 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADDON</title>
+    <title>GROUP | ADDON</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Smooth scrolling makes the page feel premium */
-        html { scroll-behavior: smooth; }
-        
-        /* Dark Mode Colors */
+        body { transition: all 0.3s ease; min-height: 100vh; display: flex; flex-direction: column; }
         .dark-theme { background-color: #050505; color: #fafafa; }
-        .dark-theme .card { background-color: #0f0f0f; border-color: #1f1f1f; }
-        
-        /* Light Mode Colors */
         .light-theme { background-color: #f4f4f5; color: #18181b; }
-        .light-theme .card { background-color: #ffffff; border-color: #e4e4e7; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        
+        .page-content { display: none; }
+        .active-page { display: block; animation: fadeIn 0.4s ease-out; }
 
-        .transition-all-300 { transition: all 0.3s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body id="bodyTag" class="dark-theme font-sans transition-all-300">
+<body id="bodyTag" class="dark-theme font-sans">
 
-    <nav class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 p-4">
+    <nav class="p-6">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img id="logo" src="img/addon.png" alt="Logo" class="h-8 w-8 object-contain">
-                <span class="font-bold tracking-tighter">GROUP</span>
+            <div class="font-black tracking-tighter text-xl underline decoration-purple-600">
+                GROUP
             </div>
             
-            <div class="flex items-center gap-6">
-                <div class="hidden md:flex gap-6 text-xs uppercase font-bold tracking-widest">
-                    <a href="#home" class="hover:text-purple-500 transition">HOME</a>
-                    <a href="#modules" class="hover:text-purple-500 transition">MODULES</a>
-                    <a href="#media" class="hover:text-purple-500 transition">MEDIA</a>
+            <div class="flex items-center gap-8">
+                <div class="flex gap-6 text-xs uppercase font-bold tracking-widest">
+                    <button onclick="showPage('home')" class="hover:text-purple-500 transition">HOME</button>
+                    <button onclick="showPage('modules')" class="hover:text-purple-500 transition">MODULES</button>
+                    <button onclick="showPage('media')" class="hover:text-purple-500 transition">MEDIA</button>
                 </div>
-                <button onclick="toggleTheme()" class="bg-zinc-800 text-white px-3 py-1 rounded text-xs hover:bg-zinc-700">Toggle Mode</button>
+                <button onclick="toggleTheme()" class="border border-zinc-700 px-3 py-1 rounded-full text-[10px] uppercase font-bold hover:bg-white hover:text-black transition">SWITCH MODE</button>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="pt-40 pb-20 text-center px-4">
-        <div class="max-w-3xl mx-auto">
-            <h1 class="text-6xl font-black mb-6">Built for the <span class="text-purple-600 underline">Elite</span>.</h1>
-            <p class="text-zinc-500 text-lg">a private meteor client extension for members of GROUP</p>
-        </div>
-    </section>
-
-    <section id="modules" class="py-20 max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-10 border-l-4 border-purple-600 pl-4">MODULES</h2>
-        <div class="grid md:grid-cols-2 gap-8">
+    <main class="flex-grow flex flex-col justify-center items-center px-4">
+        
+        <section id="home" class="page-content active-page text-center">
+            <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter uppercase italic">
+                built for <span class="text-purple-600">GROUP</span>
+            </h1>
             
-            <div class="card p-4 rounded-xl border transition-all-300">
-                <img src="img/combat-ss.png" alt="Combat" class="rounded-lg mb-4 w-full">
-                <h3 class="font-bold text-xl uppercase italic">kill aura-</h3>
-                <p class="text-zinc-500 text-sm">highly customizable kill aura</p>
+            <div class="mt-8 flex justify-center">
+                <img id="logo" src="img/addon.png" alt="Addon Logo" class="max-w-[400px] w-full h-auto drop-shadow-[0_0_35px_rgba(168,85,247,0.3)]">
             </div>
+            
+            <p class="mt-8 text-zinc-500 font-mono text-sm tracking-widest uppercase">
+                // for GROUP closed source
+            </p>
+        </section>
 
-            <div class="card p-4 rounded-xl border transition-all-300">
-                <img src="img/movement-ss.png" alt="Movement" class="rounded-lg mb-4 w-full">
-                <h3 class="font-bold text-xl uppercase italic">better speedmine</h3>
-                <p class="text-zinc-500 text-sm">speedmine with grim and matrix bypasses</p>
+        <section id="modules" class="page-content max-w-6xl w-full py-10">
+            <h2 class="text-4xl font-black mb-10 italic">MODULES</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-zinc-900/50 p-4 border border-zinc-800 rounded-2xl">
+                    <img src="img/combat-ss.png" class="rounded-xl border border-zinc-700 mb-4">
+                    <h3 class="text-xl font-bold">COMBAT</h3>
+                </div>
+                <div class="bg-zinc-900/50 p-4 border border-zinc-800 rounded-2xl">
+                    <img src="img/movement-ss.png" class="rounded-xl border border-zinc-700 mb-4">
+                    <h3 class="text-xl font-bold">HUD</h3>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section id="media" class="py-20 bg-black/20">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-10 text-right border-r-4 border-purple-600 pr-4">MEDIA</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <img src="img/media1.jpg" class="rounded-lg hover:scale-105 transition duration-500">
-                <img src="img/media2.jpg" class="rounded-lg hover:scale-105 transition duration-500">
-                <img src="img/media3.jpg" class="rounded-lg hover:scale-105 transition duration-500">
+        <section id="media" class="page-content max-w-6xl w-full py-10">
+            <h2 class="text-4xl font-black mb-10 italic text-right">MEDIA</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="img/media1.jpg" class="rounded border border-zinc-800">
+                <img src="img/media2.jpg" class="rounded border border-zinc-800">
+                <img src="img/media3.jpg" class="rounded border border-zinc-800">
+                <img src="img/media4.jpg" class="rounded border border-zinc-800">
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
+
+    <footer class="p-10 text-[10px] text-zinc-600 font-mono text-center uppercase tracking-[0.3em]">
+        GROUP
+    </footer>
 
     <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active-page'));
+            
+            document.getElementById(pageId).classList.add('active-page');
+        }
+
+        // theme toggle
         function toggleTheme() {
             const body = document.getElementById('bodyTag');
             const logo = document.getElementById('logo');
@@ -91,6 +106,5 @@
             }
         }
     </script>
-
 </body>
 </html>
