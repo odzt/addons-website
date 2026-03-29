@@ -6,52 +6,91 @@
     <title>ADDON</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
-        .glow-hover:hover { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); transition: 0.3s; }
+        /* Smooth scrolling makes the page feel premium */
+        html { scroll-behavior: smooth; }
+        
+        /* Dark Mode Colors */
+        .dark-theme { background-color: #050505; color: #fafafa; }
+        .dark-theme .card { background-color: #0f0f0f; border-color: #1f1f1f; }
+        
+        /* Light Mode Colors */
+        .light-theme { background-color: #f4f4f5; color: #18181b; }
+        .light-theme .card { background-color: #ffffff; border-color: #e4e4e7; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+
+        .transition-all-300 { transition: all 0.3s ease; }
     </style>
 </head>
-<body>
+<body id="bodyTag" class="dark-theme font-sans transition-all-300">
 
-    <nav class="p-8 flex justify-between items-center max-w-6xl mx-auto">
-        <h1 class="text-xl font-mono tracking-tighter border-l-4 border-purple-600 pl-3">
-            GROUP <span class="text-zinc-500">// group made by ODZT</span>
-        </h1>
-        <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest text-zinc-400">
-            <a href="#features" class="hover:text-white">modules</a>
-            <a href="#media" class="hover:text-white">media</a>
-            <a href="https://github.com/odzt/" class="text-purple-400 font-bold">ODZT</a>
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/10 p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img id="logo" src="img/addon.png" alt="Logo" class="h-8 w-8 object-contain">
+                <span class="font-bold tracking-tighter">GROUP</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex gap-6 text-xs uppercase font-bold tracking-widest">
+                    <a href="#home" class="hover:text-purple-500 transition">HOME</a>
+                    <a href="#modules" class="hover:text-purple-500 transition">MODULES</a>
+                    <a href="#media" class="hover:text-purple-500 transition">MEDIA</a>
+                </div>
+                <button onclick="toggleTheme()" class="bg-zinc-800 text-white px-3 py-1 rounded text-xs hover:bg-zinc-700">Toggle Mode</button>
+            </div>
         </div>
     </nav>
 
-    <section class="py-20 text-center">
-        <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest text-purple-400 uppercase bg-purple-950/30 border border-purple-500/30 rounded-full">
-            private release v1.3
+    <section id="home" class="pt-40 pb-20 text-center px-4">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-6xl font-black mb-6">Built for the <span class="text-purple-600 underline">Elite</span>.</h1>
+            <p class="text-zinc-500 text-lg">a private meteor client extension for members of GROUP</p>
         </div>
-        <h2 class="text-5xl md:text-7xl font-black mb-6 italic">UNFAIR ADVANTAGE</h2>
-        <p class="text-zinc-500 max-w-lg mx-auto mb-8">exclusive meteor addon developed for members of <span class="text-white font-bold">GROUP</span>.</p>
     </section>
 
-    <section id="media" class="max-w-6xl mx-auto px-6 py-10">
-        <h3 class="text-2xl font-bold mb-8 text-zinc-400 tracking-tighter uppercase underline decoration-purple-600">interface and features</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section id="modules" class="py-20 max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-10 border-l-4 border-purple-600 pl-4">MODULES</h2>
+        <div class="grid md:grid-cols-2 gap-8">
             
-            <div class="group relative rounded-lg border border-zinc-800 bg-zinc-900/50 p-2 glow-hover">
-                <img src="https://via.placeholder.com/800x450" class="rounded-md opacity-80 group-hover:opacity-100 transition">
-                <p class="mt-2 text-xs font-mono text-zinc-500 p-2">Screencap_01: combat_array</p>
+            <div class="card p-4 rounded-xl border transition-all-300">
+                <img src="img/combat-ss.png" alt="Combat" class="rounded-lg mb-4 w-full">
+                <h3 class="font-bold text-xl uppercase italic">kill aura-</h3>
+                <p class="text-zinc-500 text-sm">highly customizable kill aura</p>
             </div>
 
-            <div class="group relative rounded-lg border border-zinc-800 bg-zinc-900/50 p-2 glow-hover">
-                <img src="https://via.placeholder.com/800x450" class="rounded-md opacity-80 group-hover:opacity-100 transition">
-                <p class="mt-2 text-xs font-mono text-zinc-500 p-2">Screencap_02: movement_exploits</p>
+            <div class="card p-4 rounded-xl border transition-all-300">
+                <img src="img/movement-ss.png" alt="Movement" class="rounded-lg mb-4 w-full">
+                <h3 class="font-bold text-xl uppercase italic">better speedmine</h3>
+                <p class="text-zinc-500 text-sm">speedmine with grim and matrix bypasses</p>
             </div>
 
         </div>
     </section>
 
-    <footer class="text-center py-20 text-zinc-600 text-xs border-t border-zinc-900 mt-20">
-        &copy; 2026 GROUP closed source
-    </footer>
+    <section id="media" class="py-20 bg-black/20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-10 text-right border-r-4 border-purple-600 pr-4">MEDIA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <img src="img/media1.jpg" class="rounded-lg hover:scale-105 transition duration-500">
+                <img src="img/media2.jpg" class="rounded-lg hover:scale-105 transition duration-500">
+                <img src="img/media3.jpg" class="rounded-lg hover:scale-105 transition duration-500">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            const body = document.getElementById('bodyTag');
+            const logo = document.getElementById('logo');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.replace('dark-theme', 'light-theme');
+                logo.src = 'img/addon-light.png';
+            } else {
+                body.classList.replace('light-theme', 'dark-theme');
+                logo.src = 'img/addon.png';
+            }
+        }
+    </script>
 
 </body>
 </html>
